@@ -9,8 +9,8 @@ const UserShow = () => {
     useEffect(() => {
         fetch("http://localhost:4000/users")
         .them(res => res.json())
-        .them( data=> setUser(data))
-    })
+        .them( data => setUser(data))
+    },[])
     return (
       <div>
             <h1> All  Usersd show</h1>

@@ -3,7 +3,8 @@ import { Link } from 'react-router-dom';
 
 const Home = () => {
 
-   const [user, setUser]=useState({})
+  const [user, setUser] = useState({})
+  
   const handleSubmit = (event) => {
     event.preventDefault();
        console.log(user);

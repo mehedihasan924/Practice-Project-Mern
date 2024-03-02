@@ -7,10 +7,11 @@ const port = process.env.PORT || 4000;
 app.use(cors())
 app.use(express.json())
 
-
+const users=[
+  
+]
 app.get("/users", (req, res) =>{
-    const users = req.body
-    res.send(users)
+    res.send(users);
 })
  
 app.post('/users', (req, res) =>{
