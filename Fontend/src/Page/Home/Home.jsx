@@ -22,11 +22,12 @@ const Home = () => {
       },
       body: JSON.stringify(user),
     }
-    )
+      )
       .then(res => res.json())
-      .then(data=> console.log(data))
-     
+      .then(data => console.log(data)) 
+        event.target.reset()
   }
+
   const onBlur = (event) => {   
     const value=event.target.value;
     const field= event.target.name;

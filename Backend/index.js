@@ -16,6 +16,9 @@ app.get("/users", (req, res) =>{
  
 app.post('/users', (req, res) =>{
     const user = req.body;
+    user.id = users.length + 1;
+    users.push(user)
+    res.send(user)
     console.log(user);
 })
 
