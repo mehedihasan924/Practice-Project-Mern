@@ -29,13 +29,12 @@ const Home = () => {
   }
 
   const onBlur = (event) => {   
-    const value=event.target.value;
-    const field= event.target.name;
-    const newUser = { ...user };
-    newUser[field] = value;
-    setUser(newUser)
-}
-  
+      const value=event.target.value;
+      const field= event.target.name;
+      const newUser = { ...user };
+      newUser[field] = value;
+      setUser(newUser)
+  }
   return (
          <div className='max-w-screen-full container mx-auto xl:px-[150px] mb-20'>
           <div className='bg-[#f1f1f1] py-10 px-4  lg:px-[120px] rounded-md my-5  '>
