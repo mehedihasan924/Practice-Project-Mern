@@ -17,7 +17,7 @@ const UserShow = () => {
             {
                 users.map(data =>
                     <SingleUser
-                        key={data.id}
+                        key={data._id}
                         data={data}
                      >
                         

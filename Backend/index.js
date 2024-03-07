@@ -14,7 +14,7 @@ const users=[
 // database connection 
 
 
-const uri = "mongodb+srv://admin:admin@cluster0.eabvbcx.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";
+const uri ="mongodb+srv://admin:admin@cluster0.eabvbcx.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";
 
 // Create a MongoClient with a MongoClientOptions object to set the Stable API version
 const client = new MongoClient(uri, {
@@ -31,24 +31,32 @@ async function run() {
     await client.connect();
       // Send a ping to confirm a successful connection
       const userCollection = client.db("simpleNode").collection('users');
-      const result = await userCollection.insertOne(users);
-      console.log(result)
-
-app.get("/users", (req, res) => {
-    const user = req.body
-    res.send(user)
-})
-app.post('/users', async(req, res) =>{
-    const user = req.body;
-    const result = await userCollection.insertOne(user);
-    user.id = result.insertedId;
-    res.send(user)
-    // user.id = users.length + 1;
-    // users.push(user)
-    // res.send(user)
-    console.log(user);
-})
-
+    //   const result = await userCollection.insertOne(user);
+    
+      // app.get("/users", async(req, res) => {
+      //   const cursor = userCollection.find({});
+      //   const users = await cursor.toArray()
+      //   res.send(users)
+    // })
+    app.get('/users', async(req, res) => {
+      const cursor = userCollection.find({});
+      const users = await cursor.toArray();
+      res.send(users)
+    })
+    
+   app.post('/users', async(req, res) =>{
+        const user = req.body;
+        const result = await userCollection.insertOne(user);
+        res.send(result);
+     
+    //  without Database connection**
+        // user.id = result.insertedId;
+        // user.id = users.length + 1;
+        // users.push(user)
+        // res.send(user)
+        console.log(user);
+    })
+//Video 65-7
 
     await client.db("admin").command({ ping: 1 });
     console.log("Pinged your deployment. You successfully connected to MongoDB!");
