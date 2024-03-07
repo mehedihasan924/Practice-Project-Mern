@@ -7,9 +7,9 @@ const { MongoClient, ServerApiVersion } = require('mongodb');
 app.use(cors())
 app.use(express.json())
 
-const users=[
+// const users=[
   
-]
+// ]
 
 // database connection 
 
@@ -27,19 +27,19 @@ const client = new MongoClient(uri, {
 
 async function run() {
   try {
-    // Connect the client to the server	(optional starting in v4.7)
-    await client.connect();
-      // Send a ping to confirm a successful connection
+    // await client.connect();
       const userCollection = client.db("simpleNode").collection('users');
-    //   const result = await userCollection.insertOne(user);
-    
-      // app.get("/users", async(req, res) => {
-      //   const cursor = userCollection.find({});
-      //   const users = await cursor.toArray()
-      //   res.send(users)
+ 
+    //1st Step
+    // app.get('/users', async(req, res) => {
+    //   const cursor = userCollection.find({});
+    //   const users = await cursor.toArray();
+    //   res.send(users);
     // })
+    //2nd Step
     app.get('/users', async(req, res) => {
-      const cursor = userCollection.find({});
+      const query = {}
+      const cursor = userCollection.find(query)
       const users = await cursor.toArray();
       res.send(users)
     })
@@ -48,7 +48,7 @@ async function run() {
         const user = req.body;
         const result = await userCollection.insertOne(user);
         res.send(result);
-     
+         
     //  without Database connection**
         // user.id = result.insertedId;
         // user.id = users.length + 1;
