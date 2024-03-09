@@ -2,7 +2,7 @@ const express = require('express')
 const app = express()
 const cors = require('cors')
 const port = process.env.PORT || 4000; 
-const { MongoClient, ServerApiVersion } = require('mongodb');
+const { MongoClient, ServerApiVersion, ObjectId,  } = require('mongodb');
 
 app.use(cors())
 app.use(express.json())
@@ -27,42 +27,50 @@ const client = new MongoClient(uri, {
 
 async function run() {
   try {
-    // await client.connect();
-      const userCollection = client.db("simpleNode").collection('users');
- 
-    //1st Step
-    // app.get('/users', async(req, res) => {
-    //   const cursor = userCollection.find({});
-    //   const users = await cursor.toArray();
-    //   res.send(users);
-    // })
-    //2nd Step
-    app.get('/users', async(req, res) => {
-      const query = {}
-      const cursor = userCollection.find(query)
-      const users = await cursor.toArray();
-      res.send(users)
+      // await client.connect();
+        const userCollection = client.db("simpleNode").collection('users');
+  
+      //1st Step
+      // app.get('/users', async(req, res) => {
+      //   const cursor = userCollection.find({});
+      //   const users = await cursor.toArray();
+      //   res.send(users);
+      // })
+      //2nd Step
+      app.get('/users', async(req, res) => {
+        const query = {}
+        const cursor = userCollection.find(query)
+        const users = await cursor.toArray();
+        res.send(users)
+      })
+      
+    app.post('/users', async(req, res) =>{
+          const user = req.body;
+          const result = await userCollection.insertOne(user);
+          res.send(result);
+          
+      //  without Database connection**
+          // user.id = result.insertedId;
+          // user.id = users.length + 1;
+          // users.push(user)
+          // res.send(user)
+          console.log(user);
     })
-    
-   app.post('/users', async(req, res) =>{
-        const user = req.body;
-        const result = await userCollection.insertOne(user);
+      app.delete('/users/:id', async (req, res) => {
+        const id = req.params.id;
+        const query = {  }  //{_id: ObjectId(id)}
+        const result = await userCollection.deleteOne(query);
+        console.log(result);
         res.send(result);
-         
-    //  without Database connection**
-        // user.id = result.insertedId;
-        // user.id = users.length + 1;
-        // users.push(user)
-        // res.send(user)
-        console.log(user);
-    })
-//Video 65-7
+        // console.log('trying to delete', id)
+      }) 
+  //Video 65-5
 
-    await client.db("admin").command({ ping: 1 });
-    console.log("Pinged your deployment. You successfully connected to MongoDB!");
+      await client.db("admin").command({ ping: 1 });
+      console.log("Pinged your deployment. You successfully connected to MongoDB!");
   } finally { 
     // Ensures that the client will close when you finish/error
-    // await client.close();
+    // await client.close( );
   }
 }
 run().catch(console.dir);

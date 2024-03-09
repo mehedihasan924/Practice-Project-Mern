@@ -7,7 +7,16 @@ const SingleUser = ({ data }) => {
       const agree= window.confirm(`Are you sure Delete This Id: ${data._id}`)
       console.log(agree)
     if (agree) {
-          console.log("detele Id:", data._id)
+      // console.log("detele Id:", data._id)\
+      fetch(`http://localhost:4000/users/${data._id}`, {
+        method: "DELETE"
+      })
+      .then(res => res.json())
+        .then(setData => {
+          if (setData.deletedCount> 0) {
+              window.location.reload(setData); 
+          }
+      })
      }
    }
   return (

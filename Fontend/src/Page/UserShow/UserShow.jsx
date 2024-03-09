@@ -13,14 +13,13 @@ const UserShow = () => {
     },[])
     return (
       <div>
-            <h1>All Usersd show</h1>
+            <h1>All Usersd show  { users.length}</h1>
             {
                 users.map(data =>
                     <SingleUser
                         key={data._id}
                         data={data}
-                     >
-                        
+                     >       
                 </SingleUser>)
             }
           
