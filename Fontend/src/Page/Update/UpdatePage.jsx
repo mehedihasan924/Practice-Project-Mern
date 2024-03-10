@@ -3,14 +3,14 @@ import React, { useState } from 'react'
 import { Link, useLoaderData } from 'react-router-dom';
 
 const UpdatePage = () => {
-    const updateData=useLoaderData()
+    const updateData = useLoaderData()
+    console.log(updateData)
      const [user, setUser] = useState({})
   
   const handaleUpdateUser = (event) => {
     event.preventDefault();
        console.log(user);   
     }
-    
       const handaleChange = (event) => {   
       const value=event.target.value;
       const field= event.target.name;
@@ -18,7 +18,6 @@ const UpdatePage = () => {
       newUser[field] = value;
       setUser(newUser)
   }
-
   return (
     <div className='max-w-screen-full container mx-auto xl:px-[150px] mb-20'>
           <div className='bg-[#f1f1f1] py-10 px-4  lg:px-[120px] rounded-md my-5  '>
@@ -27,18 +26,17 @@ const UpdatePage = () => {
                     {/* Frist Row  */}
           <div className='flex flex-col gap-5 '>
           <Link to="/alluser">  <h2> Show All user</h2></Link>
-                      <div className='w-full text-left '>
-                          <h1>{updateData.name}</h1>
+                      <div className='w-full text-left'>                    
                             <label className='block mb-2 text-lg '>Your Name</label>
-                          <input onChange={handaleChange} type="text"  name='name' id='' required placeholder="Your Full Name"  className='block  w-full  border-1 flex-1  py-1.5  pl-3 text-black placeholde:text-gray-400 focus:outline-none sm:textsm sm:leading-6'/>
+                          <input onChange={handaleChange} defaultValue={updateData.name}  type="text"  name='name' id='' required placeholder="Your Full Name"  className='block  w-full  border-1 flex-1  py-1.5  pl-3 text-black placeholde:text-gray-400 focus:outline-none sm:textsm sm:leading-6'/>
                         </div>
                         <div className='w-full text-left'>
                             <label className=' block mb-2 text-lg'> Your Email</label>
-                            <input onChange={handaleChange} type="email" name='email' id='' required  placeholder="Your Email "  className='block  w-full  border-1 flex-1 bg-white py-1.5  pl-3 text-gray-900 placeholde:text-gray-400 focus:outline-none sm:textsm sm:leading-6'/>
+                            <input onChange={handaleChange} defaultValue={updateData.email} type="email" name='email' id='' required  placeholder="Your Email "  className='block  w-full  border-1 flex-1 bg-white py-1.5  pl-3 text-gray-900 placeholde:text-gray-400 focus:outline-none sm:textsm sm:leading-6'/>
                         </div>
                         <div className='w-full text-left'>
                             <label className=' block mb-2 text-lg'> Your ddress </label>
-                            <input onChange={handaleChange} type="text"  name='address' id='' required placeholder="Your  Address "  className='block  w-full  border-1 flex-1 bg-white py-1.5  pl-3 text-gray-900 placeholde:text-gray-400 focus:outline-none sm:textsm sm:leading-6 ' />
+                            <input onChange={handaleChange} defaultValue={updateData.address} type="text"  name='address' id='' required placeholder="Your  Address "  className='block  w-full  border-1 flex-1 bg-white py-1.5  pl-3 text-gray-900 placeholde:text-gray-400 focus:outline-none sm:textsm sm:leading-6 ' />
                         </div>                  
                         </div>
                         {/* last Row */}

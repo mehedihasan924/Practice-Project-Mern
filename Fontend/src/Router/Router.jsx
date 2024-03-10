@@ -17,9 +17,9 @@ const router = createBrowserRouter([
         element: <UserShow> </UserShow>,
   },
     {
-        path: "/Update/:id",
-      element: <UpdatePage></UpdatePage>,
-        loader:({params})=>fetch(`http://localhost:4000/users/${params.id}`)
+        path: "/Update/:_id",
+        element: <UpdatePage></UpdatePage>,
+        loader:({params})=>fetch(`http://localhost:4000/users/${params._id}`)
     }
 ]);
 export default router; 

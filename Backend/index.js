@@ -29,7 +29,6 @@ async function run() {
   try {
       // await client.connect();
         const userCollection = client.db("simpleNode").collection('users');
-  
       //1st Step
       // app.get('/users', async(req, res) => {
       //   const cursor = userCollection.find({});
