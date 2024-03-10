@@ -52,15 +52,15 @@ const Home = () => {
           <Link to="/alluser">  <h2> Show All user</h2></Link>
                         <div className='w-full text-left '>
                             <label className='block mb-2 text-lg '>Your Name</label>
-                          <input onBlur={handleBlur} type="text"  name='name' id='' required placeholder="Your Full Name"  className='block  w-full  border-1 flex-1  py-1.5  pl-3 text-black placeholde:text-gray-400 focus:outline-none sm:textsm sm:leading-6'/>
+                          <input onChange={handleBlur} type="text"  name='name' id='' required placeholder="Your Full Name"  className='block  w-full  border-1 flex-1  py-1.5  pl-3 text-black placeholde:text-gray-400 focus:outline-none sm:textsm sm:leading-6'/>
                         </div>
                         <div className='w-full text-left'>
                             <label className=' block mb-2 text-lg'> Your Email</label>
-                            <input onBlur={handleBlur} type="email" name='email' id='' required  placeholder="Your Email "  className='block  w-full  border-1 flex-1 bg-white py-1.5  pl-3 text-gray-900 placeholde:text-gray-400 focus:outline-none sm:textsm sm:leading-6'/>
+                            <input onChange={handleBlur} type="email" name='email' id='' required  placeholder="Your Email "  className='block  w-full  border-1 flex-1 bg-white py-1.5  pl-3 text-gray-900 placeholde:text-gray-400 focus:outline-none sm:textsm sm:leading-6'/>
                         </div>
                         <div className='w-full text-left'>
                             <label className=' block mb-2 text-lg'> Your ddress </label>
-                            <input onBlur={handleBlur} type="text"  name='address' id='' required placeholder="Your  Address "  className='block  w-full  border-1 flex-1 bg-white py-1.5  pl-3 text-gray-900 placeholde:text-gray-400 focus:outline-none sm:textsm sm:leading-6 ' />
+                            <input onChange={handleBlur} type="text"  name='address' id='' required placeholder="Your  Address "  className='block  w-full  border-1 flex-1 bg-white py-1.5  pl-3 text-gray-900 placeholde:text-gray-400 focus:outline-none sm:textsm sm:leading-6 ' />
                         </div>                  
                         </div>
                         {/* last Row */}
