@@ -29,13 +29,13 @@ async function run() {
   try {
       // await client.connect();
         const userCollection = client.db("simpleNode").collection('users');
-      //1st Step
-      // app.get('/users', async(req, res) => {
-      //   const cursor = userCollection.find({});
-      //   const users = await cursor.toArray();
-      //   res.send(users);
-      // })
-      //2nd Step
+        //1st Step
+          // app.get('/users', async(req, res) => {
+          //   const cursor = userCollection.find({});
+          //   const users = await cursor.toArray();
+          //   res.send(users);
+          // })
+        //2nd Step
       app.get('/users', async(req, res) => {
         const query = {}
         const cursor = userCollection.find(query)
@@ -45,17 +45,15 @@ async function run() {
     //Update
     app.get('/users/:id', async (req, res) => {
        const id = req.params.id;
-       const query = { }; //_id: ObjectId(id)
+       const query = { _id:new ObjectId(id)}; //_id: ObjectId(id)
       const user = await userCollection.findOne(query);
       res.send(user);
-    })
-    
+    }) 
 //Post Users
     app.post('/users', async(req, res) =>{
           const user = req.body;
           const result = await userCollection.insertOne(user);
-          res.send(result);
-                  
+          res.send(result);          
       //  without Database connection**
           // user.id = result.insertedId;
           // user.id = users.length + 1;
@@ -65,7 +63,7 @@ async function run() {
     })
       app.delete('/users/:id', async (req, res) => {
         const id = req.params.id;
-        const query = {  }  //{_id: ObjectId(id)}
+        const query = { _id:new ObjectId(id) }  //{_id: ObjectId(id)}
         const result = await userCollection.deleteOne(query);
         console.log(result);
         res.send(result);
